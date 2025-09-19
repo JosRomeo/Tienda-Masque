@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Registro - MasquePulpa{% endblock %}
+
+{% block content %}
+<main class="flex flex-1 items-center justify-center min-h-screen py-16">
+  <div class="w-full max-w-md rounded-2xl bg-white shadow-lg border border-gray-200/80">
+    <div class="p-8">
+      <h2 class="text-3xl font-bold text-center mb-2">Crea tu cuenta</h2>
+      <p class="text-center text-gray-500 mb-8">Se parte de nuestra tienda</p>
+
+      <!-- FORMULARIO -->
+      <form method="POST" action="{{ url_for('register') }}" class="mt-8 space-y-6">
+        <div>
+          <label for="usuario" class="block text-sm font-medium text-gray-700 pb-2">Nombre de usuario</label>
+          <input id="usuario" name="usuario" type="text" placeholder="Elige un nombre de usuario"
+                 required class="form-input"/>
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 pb-2">Contraseña</label>
+          <input id="password" name="password" type="password" placeholder="Crea una contraseña segura"
+                 required class="form-input"/>
+        </div>
+        <div>
+          <button type="submit" class="primary w-full">Crear cuenta</button>
+        </div>
+      </form>
+
+      <!-- Enlaces -->
+      <p class="text-center mt-6 text-sm text-gray-600">
+        ¿Ya tienes una cuenta?
+        <a href="{{ url_for('login') }}" class="underline">Inicia sesión aquí</a>
+      </p>
+    </div>
+  </div>
+</main>
+{% endblock %}

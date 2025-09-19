@@ -1,0 +1,71 @@
+/* ================================
+   🎨 Colores globales
+================================ */
+:root {
+  --primary-color: #f9f506;   /* Amarillo */
+  --secondary-color: #000000; /* Negro grisáceo */
+  --background-color: #000000;
+  --text-color: #0091ff;
+  --gray-color: #ff0000;
+}
+
+/* ================================
+   🌎 Estilos generales
+================================ */
+body {
+  font-family: "Spline Sans", "Noto Sans", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================
+   🖱️ Links
+================================ */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* ================================
+   🔘 Botones generales
+================================ */
+button {
+  font-weight: bold;
+  border-radius: 9999px; /* redondeado */
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+button.primary {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+}
+
+button.primary:hover {
+  background-color: #00000071; /* Amarillo más oscuro */
+}
+
+/* ================================
+   📦 Formularios
+================================ */
+input, select {
+  border-radius: 0.75rem;
+  border: 1px solid #d1d5db; /* gris claro */
+  padding: 0.75rem 1rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+}

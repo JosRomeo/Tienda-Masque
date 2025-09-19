@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Catálogo - MasquePulpa{% endblock %}
+
+{% block content %}
+<main class="px-4 py-8 max-w-7xl mx-auto">
+  <h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestros productos</h2>
+
+  <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+
+    <!-- Producto 1 -->
+    <div class="group bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{{ url_for('static', filename='images/JugoMandarina.png') }}"
+           alt="Jugo de Mandarina"
+           class="w-full h-[300px] object-contain rounded-t-lg bg-gray-100" />
+      <div class="p-4">
+        <h3 class="text-sm text-gray-700">Jugo de Mandarina</h3>
+        <p class="mt-1 text-lg font-medium text-gray-900">$120.00</p>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="group bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{{ url_for('static', filename='images/JugoToronja.jpg') }}"
+           alt="Pulpa de Toronja"
+           class="w-full h-[300px] object-contain rounded-t-lg bg-gray-100" />
+      <div class="p-4">
+        <h3 class="text-sm text-gray-700">Jugo de Toronja</h3>
+        <p class="mt-1 text-lg font-medium text-gray-900">$130.00</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock %}
+
+

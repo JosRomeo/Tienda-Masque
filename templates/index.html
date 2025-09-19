@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - MasquePulpa{% endblock %}
+
+{% block content %}
+<main class="flex flex-1 items-center justify-center py-16">
+  <div class="w-full max-w-2xl text-center">
+    <h2 class="text-5xl font-bold text-[#1c1c0d] mb-4">¡Bienvenido a MasquePulpa!</h2>
+    <p class="text-lg text-gray-600 mb-8">
+      Descubre nuestra gran variedad de productos y encuentra lo que necesitas.
+    </p>
+    <a href="{{ url_for('list_products') }}"
+       class="inline-flex items-center justify-center py-4 px-8 border border-transparent 
+              rounded-full text-base font-bold text-[#1c1c0d] 
+              bg-[var(--primary-color)] hover:bg-yellow-400 
+              focus:outline-none focus:ring-2 focus:ring-offset-2 
+              focus:ring-yellow-500 transition-colors">
+      Explorar la tienda
+    </a>
+  </div>
+</main>
+{% endblock %}
