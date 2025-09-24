@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # Necesario para manejar sesiones
+app.secret_key = "supersecretkey" 
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://JSr:NITO2004@localhost/web'
@@ -12,11 +12,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# --- Modelo de Usuario ---
-class Usuario(UserMixin, db.Model):  # <- hereda de UserMixin
+# Usuario
+
+class Usuario(UserMixin, db.Model):  
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(256), nullable=False)  # Guardamos el hash de la contraseña
+    password_hash = db.Column(db.String(256), nullable=False)  
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -39,13 +40,14 @@ class Producto(db.Model):
 
 # --- Configuración de Flask-Login ---
 login_manager = LoginManager(app)
-login_manager.login_view = "login"  # Redirige a /login si no ha iniciado sesión
+login_manager.login_view = "login" 
 
 @login_manager.user_loader
 def load_user(user_id):
     return Usuario.query.get(int(user_id))
 
-# --- Rutas ---
+#  Rutas 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -53,14 +55,6 @@ def index():
 @app.route('/catalogo')
 def list_products():
     return render_template('list_products.html')
-
-@app.route('/delete/<int:id>')
-@login_required  # Solo usuarios logueados pueden borrar
-def delete_product(id):
-    product = Producto.query.get_or_404(id)
-    db.session.delete(product)
-    db.session.commit()
-    return redirect(url_for('list_products'))
 
 # Iniciar sesión
 @app.route('/login', methods=['GET', 'POST'])
@@ -72,7 +66,7 @@ def login():
         user = Usuario.query.filter_by(username=username).first()
 
         if user and user.check_password(password):
-            login_user(user)  # <- aquí se guarda en sesión
+            login_user(user)  
             return redirect(url_for('index'))
         else:
             return "Usuario o contraseña incorrectos."

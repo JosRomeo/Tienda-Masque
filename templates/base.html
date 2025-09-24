@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <title>{% block title %}MasquePulpa{% endblock %}</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Spline+Sans:wght@400;500;700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Estilos personalizados -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
 </head>
 <body class="bg-[#fcfcf8] font-['Spline_Sans'] text-[#1c1c0d]">
@@ -20,11 +17,9 @@
   <header class="flex items-center justify-between border-b border-[#f4f4e6] px-10 py-4">
     <div class="flex items-center gap-3">
       <a href="{{ url_for('index') }}" class="flex items-center gap-2">
-        <!-- Logo como imagen -->
         <img src="{{ url_for('static', filename='images/LogoFruta.png') }}"
              alt="MasquePulpa Logo"
              class="h-10 w-auto">
-        <!-- Nombre de la marca -->
         <h1 class="text-2xl font-bold tracking-tight">MasquePulpa</h1>
       </a>
     </div>
@@ -46,7 +41,7 @@
           </div>
         </div>
       {% else %}
-        <!-- Opciones si NO está logueado -->
+        <!-- NO está logueado -->
         <a href="{{ url_for('login') }}" class="hover:text-[var(--primary-color)] transition-colors">Iniciar sesión</a>
         <a href="{{ url_for('register') }}" class="hover:text-[var(--primary-color)] transition-colors">Crear cuenta</a>
       {% endif %}
