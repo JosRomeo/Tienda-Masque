@@ -26,6 +26,17 @@
         </div>
       </form>
 
+      <!-- MENSAJE DE ERROR -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="mt-4 rounded-lg bg-red-100 border border-red-300 text-red-700 p-3 text-sm text-center">
+            {% for category, message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
       <!-- Enlaces adicionales -->
       <p class="text-center mt-4 text-sm text-gray-600">
         ¿No tienes cuenta?
@@ -35,5 +46,4 @@
   </div>
 </main>
 {% endblock %}
-
 

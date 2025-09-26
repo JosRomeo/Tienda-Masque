@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <title>{% block title %}MasquePulpa{% endblock %}</title>
 
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Spline+Sans:wght@400;500;700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link 
+    href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Spline+Sans:wght@400;500;700" 
+    rel="stylesheet">
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" 
+    rel="stylesheet">
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
@@ -15,18 +21,25 @@
 <body class="bg-[#fcfcf8] font-['Spline_Sans'] text-[#1c1c0d]">
 
   <header class="flex items-center justify-between border-b border-[#f4f4e6] px-10 py-4">
+    <!-- Logo -->
     <div class="flex items-center gap-3">
       <a href="{{ url_for('index') }}" class="flex items-center gap-2">
-        <img src="{{ url_for('static', filename='images/LogoFruta.png') }}"
-             alt="MasquePulpa Logo"
-             class="h-10 w-auto">
+        <img 
+          src="{{ url_for('static', filename='images/LogoFruta.png') }}"
+          alt="MasquePulpa Logo"
+          class="h-10 w-auto">
         <h1 class="text-2xl font-bold tracking-tight">MasquePulpa</h1>
       </a>
     </div>
     
+    <!-- Navegación -->
     <nav class="flex items-center gap-6 text-base font-medium">
-      <a href="{{ url_for('index') }}" class="hover:text-[var(--primary-color)] transition-colors">Inicio</a>
-      <a href="{{ url_for('list_products') }}" class="hover:text-[var(--primary-color)] transition-colors">Tienda</a>
+      <a href="{{ url_for('index') }}" class="hover:text-[var(--primary-color)] transition-colors">
+        Inicio
+      </a>
+      <a href="{{ url_for('list_products') }}" class="hover:text-[var(--primary-color)] transition-colors">
+        Productos
+      </a>
 
       {% if current_user.is_authenticated %}
         <!-- Icono de usuario -->
@@ -36,21 +49,31 @@
           </button>
           <!-- Menú desplegable -->
           <div class="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg hidden group-hover:block">
-            <a href="{{ url_for('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Mi perfil</a>
-            <a href="{{ url_for('logout') }}" class="block px-4 py-2 hover:bg-gray-100">Cerrar sesión</a>
+            <a href="{{ url_for('profile') }}" class="block px-4 py-2 hover:bg-gray-100">
+              Mi perfil
+            </a>
+            <a href="{{ url_for('logout') }}" class="block px-4 py-2 hover:bg-gray-100">
+              Cerrar sesión
+            </a>
           </div>
         </div>
       {% else %}
         <!-- NO está logueado -->
-        <a href="{{ url_for('login') }}" class="hover:text-[var(--primary-color)] transition-colors">Iniciar sesión</a>
-        <a href="{{ url_for('register') }}" class="hover:text-[var(--primary-color)] transition-colors">Crear cuenta</a>
+        <a href="{{ url_for('login') }}" class="hover:text-[var(--primary-color)] transition-colors">
+          Iniciar sesión
+        </a>
+        <a href="{{ url_for('register') }}" class="hover:text-[var(--primary-color)] transition-colors">
+          Crear cuenta
+        </a>
       {% endif %}
     </nav>
   </header>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="p-6">
     {% block content %}{% endblock %}
   </main>
 
 </body>
 </html>
+

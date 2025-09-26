@@ -1,3 +1,63 @@
-<h1>Bienvenido, {{ current_user.username }}!</h1>
-<p>ID de usuario: {{ current_user.id }}</p>
-<a href="{{ url_for('logout') }}">Cerrar sesión</a>
+
+<main class="max-w-3xl mx-auto p-6 space-y-8">
+  <!-- Bienvenida -->
+  <section>
+    <h2 class="text-2xl font-bold">Hola, {{ current_user.name }}</h2>
+    <p class="text-gray-600">Bienvenido a tu cuenta en MasquePulpa</p>
+  </section>
+
+  <!-- Información personal -->
+  <section class="bg-white p-4 rounded-lg shadow">
+    <h3 class="text-lg font-semibold mb-2">Mi información</h3>
+    <p><strong>Nombre de usuario:</strong> {{ current_user.name }}</p>
+    <p><strong>Email:</strong> {{ current_user.email }}</p>
+    <a href="{{ url_for('profile') }}" class="text-blue-600 hover:underline">
+      Editar perfil
+    </a>
+  </section>
+
+  <!-- Historial de pedidos -->
+  <section class="bg-white p-4 rounded-lg shadow">
+    <h3 class="text-lg font-semibold mb-2">Mis pedidos</h3>
+    <ul class="divide-y">
+      <li class="py-2 flex justify-between">
+        <span>Pedido #1001 - Entregado</span>
+        <span class="font-semibold">$20.00</span>
+      </li>
+      <li class="py-2 flex justify-between">
+        <span>Pedido #1002 - Pendiente</span>
+        <span class="font-semibold">$35.50</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Carrito simulado -->
+  <section class="bg-white p-4 rounded-lg shadow">
+    <h3 class="text-lg font-semibold mb-2">Mi carrito</h3>
+    <ul class="divide-y">
+      <li class="py-2 flex justify-between">
+        <span>Jugo de naranja (1L)</span>
+        <span class="font-semibold">$5.00</span>
+      </li>
+      <li class="py-2 flex justify-between">
+        <span>Batido de mango</span>
+        <span class="font-semibold">$4.50</span>
+      </li>
+    </ul>
+    <div class="flex justify-between mt-4 font-bold">
+      <span>Total:</span>
+      <span>$9.50</span>
+    </div>
+    <button class="mt-4 w-full bg-[var(--primary-color)] text-white py-2 rounded-lg hover:opacity-90">
+      Finalizar compra
+    </button>
+  </section>
+
+  <!-- Opciones -->
+  <section class="flex justify-end">
+    <a href="{{ url_for('logout') }}" class="text-red-600 hover:underline">
+      Cerrar sesión
+    </a>
+  </section>
+</main>
+

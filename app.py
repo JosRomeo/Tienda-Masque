@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
@@ -13,7 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Usuario
-
 class Usuario(UserMixin, db.Model):  
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -28,7 +27,7 @@ class Usuario(UserMixin, db.Model):
     def __repr__(self):
         return f'<Usuario {self.username}>'
 
-# --- Modelo Producto ---
+# Producto
 class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
@@ -38,7 +37,7 @@ class Producto(db.Model):
     def __repr__(self):
         return f'<Producto {self.name} = available {self.quantity}>'
 
-# --- Configuración de Flask-Login ---
+# Configuración de Flask-Login
 login_manager = LoginManager(app)
 login_manager.login_view = "login" 
 
@@ -69,7 +68,9 @@ def login():
             login_user(user)  
             return redirect(url_for('index'))
         else:
-            return "Usuario o contraseña incorrectos."
+            flash("Usuario o contraseña incorrectos")
+            return redirect(url_for("login"))
+        
 
     return render_template('login.html')
 
