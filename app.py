@@ -16,6 +16,11 @@ db = SQLAlchemy(app)
 class Usuario(UserMixin, db.Model):  
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)    
+    fruta_favorita = db.Column(db.String(50), nullable=True)
+    nacimiento = db.Column(db.Integer, nullable=True)
+    ubicacion = db.Column(db.String(120), nullable=True)  
+    fecha_creacion = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     password_hash = db.Column(db.String(256), nullable=False)  
 
     def set_password(self, password):
@@ -80,20 +85,32 @@ def register():
     if request.method == 'POST':
         username = request.form['usuario']
         password = request.form['password']
+        email = request.form['email']
+        name = request.form.get('name')
+        fruta_favorita = request.form.get('fruta_favorita')
+        nacimiento = request.form.get('nacimiento')
+        ubicacion = request.form.get('ubicacion')
 
         existing_user = Usuario.query.filter_by(username=username).first()
         if existing_user:
-            return "El nombre de usuario ya existe. Por favor, elige otro."
+            flash("El nombre de usuario ya existe.")
+            return redirect(url_for('register'))
 
-        new_user = Usuario(username=username)
+        new_user = Usuario(
+            username=username,
+            email=email,
+            fruta_favorita=fruta_favorita,
+            nacimiento=nacimiento,
+            ubicacion=ubicacion
+        )
         new_user.set_password(password)
 
         db.session.add(new_user)
         db.session.commit()
 
         return redirect(url_for('login'))
-    
     return render_template('register.html')
+
 
 # Cerrar sesión
 @app.route('/logout')
@@ -105,8 +122,7 @@ def logout():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template("profile.html")
-
+    return render_template("profile.html", usuario=current_user)
 
 if __name__ == '__main__':
     with app.app_context():

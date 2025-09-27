@@ -1,63 +1,72 @@
+{% extends "base.html" %}
 
-<main class="max-w-3xl mx-auto p-6 space-y-8">
-  <!-- Bienvenida -->
-  <section>
-    <h2 class="text-2xl font-bold">Hola, {{ current_user.name }}</h2>
-    <p class="text-gray-600">Bienvenido a tu cuenta en MasquePulpa</p>
-  </section>
+{% block title %}Perfil - FrutiFresh{% endblock %}
 
-  <!-- Información personal -->
-  <section class="bg-white p-4 rounded-lg shadow">
-    <h3 class="text-lg font-semibold mb-2">Mi información</h3>
-    <p><strong>Nombre de usuario:</strong> {{ current_user.name }}</p>
-    <p><strong>Email:</strong> {{ current_user.email }}</p>
-    <a href="{{ url_for('profile') }}" class="text-blue-600 hover:underline">
-      Editar perfil
-    </a>
-  </section>
+{% block content %}
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-4xl mx-auto">
 
-  <!-- Historial de pedidos -->
-  <section class="bg-white p-4 rounded-lg shadow">
-    <h3 class="text-lg font-semibold mb-2">Mis pedidos</h3>
-    <ul class="divide-y">
-      <li class="py-2 flex justify-between">
-        <span>Pedido #1001 - Entregado</span>
-        <span class="font-semibold">$20.00</span>
-      </li>
-      <li class="py-2 flex justify-between">
-        <span>Pedido #1002 - Pendiente</span>
-        <span class="font-semibold">$35.50</span>
-      </li>
-    </ul>
-  </section>
+    <h2 class="text-4xl font-bold mb-8 text-center text-background-dark dark:text-background-light">
+      Mi Perfil
+    </h2>
 
-  <!-- Carrito simulado -->
-  <section class="bg-white p-4 rounded-lg shadow">
-    <h3 class="text-lg font-semibold mb-2">Mi carrito</h3>
-    <ul class="divide-y">
-      <li class="py-2 flex justify-between">
-        <span>Jugo de naranja (1L)</span>
-        <span class="font-semibold">$5.00</span>
-      </li>
-      <li class="py-2 flex justify-between">
-        <span>Batido de mango</span>
-        <span class="font-semibold">$4.50</span>
-      </li>
-    </ul>
-    <div class="flex justify-between mt-4 font-bold">
-      <span>Total:</span>
-      <span>$9.50</span>
+    <!-- nombre y email -->
+    <div class="bg-background-light dark:bg-background-dark/50 rounded-xl p-8 flex flex-row items-center gap-8 border border-primary/20 dark:border-primary/30 shadow-sm">
+      <div class="flex-shrink-0">
+        <div class="w-32 h-32 rounded-full bg-cover bg-center" 
+             style='background-image: url("{{ current_user.avatar_url or url_for("static", filename="images/default-avatar.png") }}");'>
+        </div>
+      </div>
+      <div class="text-left">
+        <h3 class="text-2xl font-bold text-background-dark dark:text-background-light">
+          {{ current_user.username }}
+        </h3>
+        <p class="text-background-dark/60 dark:text-background-light/60">
+          {{ current_user.email }}
+        </p>
+      </div>
     </div>
-    <button class="mt-4 w-full bg-[var(--primary-color)] text-white py-2 rounded-lg hover:opacity-90">
-      Finalizar compra
-    </button>
-  </section>
 
-  <!-- Opciones -->
-  <section class="flex justify-end">
-    <a href="{{ url_for('logout') }}" class="text-red-600 hover:underline">
-      Cerrar sesión
-    </a>
-  </section>
+    <div class="mt-8 bg-background-light dark:bg-background-dark/50 rounded-xl p-8 border border-primary/20 dark:border-primary/30 shadow-sm">
+      <h4 class="text-xl font-bold mb-6 text-background-dark dark:text-background-light">
+        Información Personal
+      </h4>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+
+        <div class="py-4 border-b border-primary/20 dark:border-primary/30">
+          <p class="text-sm font-medium text-background-dark/60 dark:text-background-light/60">Fruta Favorita</p>
+          <p class="font-semibold text-background-dark dark:text-background-light">
+            {{ current_user.fruta_favorita or "No registrada" }}
+          </p>
+        </div>
+
+        <div class="py-4 border-b border-primary/20 dark:border-primary/30">
+          <p class="text-sm font-medium text-background-dark/60 dark:text-background-light/60">Año de Nacimiento</p>
+          <p class="font-semibold text-background-dark dark:text-background-light">
+            {{ current_user.nacimiento or "No registrado" }}
+          </p>
+        </div>
+
+        <div class="py-4 border-b border-primary/20 dark:border-primary/30">
+          <p class="text-sm font-medium text-background-dark/60 dark:text-background-light/60">Ubicación</p>
+          <p class="font-semibold text-background-dark dark:text-background-light">
+            {{ current_user.ubicacion or "No registrada" }}
+          </p>
+        </div>
+
+        <div class="py-4 border-b border-primary/20 dark:border-primary/30">
+          <p class="text-sm font-medium text-background-dark/60 dark:text-background-light/60">Miembro desde</p>
+          <p class="font-semibold text-background-dark dark:text-background-light">
+            {{ current_user.fecha_creacion.strftime("%d/%m/%Y") }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </main>
+{% endblock %}
+
+
 
