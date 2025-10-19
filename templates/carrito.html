@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Carrito - MasquePulpa{% endblock %}
+
+{% block content %}
+<main class="px-4 py-8 max-w-7xl mx-auto">
+  <h2 class="text-3xl font-bold text-[#1c1c0d] mb-6">Tu carrito de compras</h2>
+
+  {% if cart_items %}
+  <div class="space-y-6">
+    {% for item in cart_items %}
+    <div class="flex items-center justify-between border p-4 rounded-2xl shadow-sm">
+      <div class="flex items-center gap-4">
+        <img src="{{ item.image_url }}" alt="{{ item.name }}" class="w-24 h-24 object-cover rounded-xl">
+        <div>
+          <h3 class="font-semibold text-lg">{{ item.name }}</h3>
+          <p class="text-gray-800 font-bold">${{ "%.2f"|format(item.price) }}</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Botón para disminuir cantidad -->
+        <form method="POST" action="{{ url_for('update_cart', action='remove', product_id=item.id) }}">
+          <button type="submit" class="px-3 py-1 bg-red-400 hover:bg-red-500 text-white rounded-full">-</button>
+        </form>
+
+        <span class="px-3">{{ item.quantity }}</span>
+
+        <!-- Botón para aumentar cantidad -->
+        <form method="POST" action="{{ url_for('update_cart', action='add', product_id=item.id) }}">
+          <button type="submit" class="px-3 py-1 bg-green-400 hover:bg-green-500 text-white rounded-full">+</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Totales -->
+  <div class="mt-8 p-6 border rounded-2xl shadow-sm bg-gray-50">
+    <p class="text-gray-700 mb-2">Subtotal: ${{ "%.2f"|format(subtotal) }}</p>
+    <p class="text-gray-700 mb-4">Envío gratis</p>
+    <p class="text-xl font-bold mb-4">Total: ${{ "%.2f"|format(total) }}</p>
+
+    <!-- Contenedor de botones centrados y separados -->
+    <div class="flex justify-center gap-4">
+      <!-- Botón Vaciar Carrito -->
+      <form method="POST" action="{{ url_for('update_cart', action='clear', product_id=0) }}">
+        <button type="submit" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-900 rounded-full">
+          Vaciar carrito
+        </button>
+      </form>
+
+      <!-- Botón de checkout -->
+      <form action="{{ url_for('checkout') }}" method="post">
+  <button type="submit"
+          class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
+    Pagar
+  </button>
+</form>
+
+    </div>
+  </div>
+
+  {% else %}
+  <p class="text-gray-600 text-lg">Tu carrito está vacío.</p>
+  {% endif %}
+</main>
+{% endblock %}

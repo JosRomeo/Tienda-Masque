@@ -24,8 +24,8 @@
       <label for="nacimiento">Año de nacimiento</label>
       <input id="nacimiento" name="nacimiento" type="number" placeholder="2000" class="form-input"/>
 
-      <label for="state">Estado</label>
-      <select id="state" name="state" class="form-select">
+      <label for="ubicacion">Estado</label>
+      <select id="ubicacion" name="ubicacion" class="form-select">
         <option disabled selected>Selecciona tu estado</option>
       </select>
 
@@ -51,7 +51,7 @@
     "Sinaloa","Sonora","Tabasco","Tamaulipas","Tlaxcala","Veracruz","Yucatán","Zacatecas"
   ];
 
-  const select = document.getElementById('state');
+  const select = document.getElementById('ubicacion');
   estados.forEach(estado => {
     const option = document.createElement('option');
     option.textContent = estado;

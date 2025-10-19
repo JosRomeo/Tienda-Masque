@@ -1,6 +1,6 @@
 /* Variables globales */
 :root {
-  --primary-color: #0a7e23;
+  --primary-color: #00b30f;
   --bg-color: #fcfcf8;
   --text-color: #1c1c0d;
   --border-color: #d1d5db;
@@ -70,7 +70,7 @@ body {
 }
 
 .primary:hover {
-  background-color: #45a049;
+  background-color: #ff0a0a;
 }
 
 .text-small {
@@ -137,7 +137,7 @@ a:hover {
 
 .product-title {
   font-size: 0.9rem;
-  color: #4b5563; 
+  color: #000000; 
 }
 
 

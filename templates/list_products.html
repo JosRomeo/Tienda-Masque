@@ -8,30 +8,28 @@
 
   <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
 
-    <!-- Producto 1 -->
-    <div class="product-card group">
+    {% for producto in productos %}
+    <div class="product-card group border rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+      <!-- Ajusta la imagen según tu lógica; aquí usamos una genérica -->
       <img src="{{ url_for('static', filename='images/JugoMandarina.png') }}"
-           alt="Jugo de Mandarina"
-           class="product-img" />
-      <div class="p-4">
-        <h3 class="product-title">Jugo de Mandarina</h3>
-        <p class="product-price">$120.00</p>
-      </div>
-    </div>
+           alt="{{ producto.name }}"
+           class="product-img w-full h-60 object-cover rounded-t-2xl" />
+      <div class="p-4 text-center">
+        <h3 class="product-title text-lg font-semibold">{{ producto.name }}</h3>
+        <p class="product-price text-[#1c1c0d] text-xl font-bold mb-4">${{ "%.2f"|format(producto.price) }}</p>
 
-    <!-- Producto 2 -->
-    <div class="product-card group">
-      <img src="{{ url_for('static', filename='images/JugoToronja.jpg') }}"
-           alt="Pulpa de Toronja"
-           class="product-img" />
-      <div class="p-4">
-        <h3 class="product-title">Jugo de Toronja</h3>
-        <p class="product-price">$130.00</p>
+        <!-- Botón Agregar al carrito -->
+        <form action="{{ url_for('update_cart', action='add', product_id=producto.id) }}" method="post">
+          <button type="submit"
+            class="bg-yellow-400 hover:bg-yellow-500 text-[#1c1c0d] font-medium py-2 px-4 rounded-full transition-colors">
+            Agregar al carrito
+          </button>
+        </form>
       </div>
     </div>
+    {% endfor %}
 
   </div>
 </main>
 {% endblock %}
-
 

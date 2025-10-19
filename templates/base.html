@@ -41,6 +41,10 @@
         Productos
       </a>
 
+      <a href="{{ url_for('carrito') }}" class="hover:text-[var(--primary-color)] transition-colors">
+        <span class="material-symbols-outlined align-middle">shopping_bag</span>
+      </a>
+
       {% if current_user.is_authenticated %}
         <!-- Icono de usuario -->
         <div class="relative group">
@@ -71,9 +75,25 @@
 
   <!-- CONTENIDO PRINCIPAL -->
   <main class="p-6">
+
+    <!-- Mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="fixed bottom-4 right-4 z-50 space-y-2">
+          {% for category, message in messages %}
+                    <div class="px-4 py-2 rounded shadow-lg
+                    {% if category == 'error' %}bg-red-200 text-red-800
+                    {% elif category == 'success' %}bg-green-200 text-green-800
+                    {% else %}bg-yellow-200 text-yellow-800{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     {% block content %}{% endblock %}
   </main>
 
 </body>
 </html>
-

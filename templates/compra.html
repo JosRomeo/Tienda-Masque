@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Compra realizada - MasquePulpa{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-lg text-center mt-16">
+    <div class="flex justify-center mb-6">
+        <div class="relative">
+            <div class="absolute inset-0 bg-[var(--primary-color)] rounded-full animate-pulse-slow"></div>
+            <div class="relative flex items-center justify-center bg-white/60 backdrop-blur-sm rounded-full w-24 h-24 border-4 border-[var(--primary-color)]">
+                <span class="material-symbols-outlined text-5xl text-stone-800">local_shipping</span>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="text-stone-900 text-3xl font-bold tracking-tight sm:text-4xl">¡Tu pedido está en camino!</h1>
+    <p class="mt-4 text-stone-600">
+        ¡Genial! Estamos preparando todo. 
+    </p>
+
+    <!-- Botón para volver a la tienda -->
+    <div class="mt-8">
+        <a href="{{ url_for('list_products') }}"
+           class="inline-block rounded-full bg-[var(--primary-color)] px-8 py-3 text-sm font-bold text-stone-900 shadow-lg hover:bg-yellow-400 transition-colors">
+            Volver a la tienda
+        </a>
+    </div>
+
+    <div class="mt-10 overflow-hidden rounded-2xl shadow-lg">
+        <div class="w-full bg-center bg-no-repeat bg-cover aspect-[4/3]"
+             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOM1kJ8hEnt0xyL37ObqDgX0vIU7ZK-Mqz2a1DzIPufrzUMNYNdCt5VSZqYuM3e7ILB2pVHqG7052defBVQVjbj9fmSIeYYSY7geRAgBkpGjeI1CDdeDmhcVPF_BZhoaX9B-GKYJzSaNBOcktAcdIVgC4JLa8Id4Jr6gbRAmShjlT2VRM-jFUNPCN3G1zZJ_NurNI0zmKYzXbFKmlELu4ZmA-QnTudYP6_O2C-0I1nHH9OebZwIxnZ0el3i3jE_MNV91wji4sPZ28');">
+        </div>
+    </div>
+</div>
+{% endblock %}
